@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sadiya Muhammad Kilgori - IT Assistant Portfolio</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header>
+        <h1>Sadiya Muhammad Kilgori</h1>
+        <nav>
+            <ul>
+                <li><a href="#about">Home</a></li>
+                <li><a href="#projects">Projects</a></li>
+                <li><a href="#skills">Skills</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <section id="about">
+            <img src="profile.jpg" alt="Professional Headshot">
+            <h2>About Me</h2>
+            <p>Highly motivated and versatile IT professional with a solid foundation in system engineering, scripting, and software development. Proven ability to troubleshoot issues, automate tasks, and contribute to efficient IT operations. Eager to leverage these skills as an IT Assistant.</p>
+            <h3>Contact</h3>
+            <p>Email: <a href="mailto:shahidakilgori@gmail.com">shahidakilgori@gmail.com</a></p>
+            <p>LinkedIn: <a href="https://www.linkedin.com/in/sadiya-muhammad">Sadiya Muhammad Kilgori</a></p>
+        </section>
+
+        <section id="projects">
+            <h2>Projects</h2>
+
+            <article>
+                <h3>Automated System Monitoring Script</h3>
+                <p><strong>Description:</strong> This project implements a Bash script designed to monitor critical system resources on Linux servers, including CPU usage, memory utilization, and disk space. It automatically sends email alerts to administrators when resource thresholds are exceeded, enabling proactive identification and resolution of potential performance issues. Demonstrates skills in Bash scripting, system administration, and proactive system monitoring.</p>
+                <pre><code>
+#!/bin/bash
+# System Monitoring Script
+
+CPU_THRESHOLD=80
+MEM_THRESHOLD=90
+DISK_THRESHOLD=95
+
+cpu_usage=$(top -bn1 | grep "Cpu(s)" | sed "s/.*, *\([0-9.]*\)%* id.*/\1/" | awk '{print 100 - $1}')
+mem_usage=$(free | awk 'NR==2{printf "%.2f", $3/$2 * 100}')
+disk_usage=$(df -h / | awk '$NF=="/"{printf "%s", $5}' | sed 's/%//g')
+
+if (( $(echo "$cpu_usage > $CPU_THRESHOLD" | bc -l) )); then
+  echo "CPU usage exceeds $CPU_THRESHOLD%: $cpu_usage%" | mail -s "CPU Alert" shahidakilgori@gmail.com
+fi
+
+if (( $(echo "$mem_usage > $MEM_THRESHOLD" | bc -l) )); then
+  echo "Memory usage exceeds $MEM_THRESHOLD%: $mem_usage%" | mail -s "Memory Alert" shahidakilgori@gmail.com
+fi
+
+if (( $(echo "$disk_usage > $DISK_THRESHOLD" | bc -l) )); then
+  echo "Disk usage exceeds $DISK_THRESHOLD%: $disk_usage%" | mail -s "Disk Space Alert" shahidakilgori@gmail.com
+fi
+                </code></pre>
+                <p><strong>GitHub Repository:</strong> <a href="https://github.com/SKilgori/System-engineering-DevOps">Link to the repository</a></p>
+            </article>
+
+            <article>
+                <h3>Simple Shell Implementation</h3>
+                <p><strong>Description:</strong> This project involved building a basic command-line shell in C. It demonstrates an understanding of fundamental operating system concepts such as process creation, execution, and signal handling. The shell is capable of parsing user input, executing commands, and managing input/output redirection. This project showcases skills in low-level programming and operating system interaction, which are beneficial for system administration and troubleshooting.</p>
+                <pre><code>
+#include 
+#include 
+#include 
+#include 
+#include 
+
+#define MAX_INPUT_SIZE 1024
+
+int main() {
+    char input[MAX_INPUT_SIZE];
+    char *args[64];
+    int status;
+
+    while (1) {
+        printf("$ ");
+        fgets(input, MAX_INPUT_SIZE, stdin);
+
+        // ... (Code for parsing input and executing commands)
+    }
+    return 0;
+}
+                </code></pre>
+                <p><strong>GitHub Repository:</strong> <a href="https://github.com/SKilgori/alx-low_level_programming">Link to the repository</a></p>
+            </article>
+
+            <article>
+                <h3>File I/O Operations in C</h3>
+                <p><strong>Description:</strong> This project focuses on implementing various file I/O operations using the C programming language. Tasks included creating, reading, writing, and manipulating files, demonstrating a thorough understanding of file system interactions and low-level system calls. These skills are essential for tasks such as log file analysis, data processing, and system configuration.</p>
+                <pre><code>
+#include 
+#include 
+
+int main() {
+    FILE *fp;
+    char str[100];
+
+    // Open file for writing
+    fp = fopen("my_file.txt", "w");
+    if (fp == NULL) {
+        perror("Error opening file");
+        return 1;
+    }
+    fprintf(fp, "Hello, this is a test.\n");
+    fclose(fp);
+
+    // Open file for reading
+    fp = fopen("my_file.txt", "r");
+    if (fp == NULL) {
+        perror("Error opening file");
+        return 1;
+    }
+    fgets(str, 100, fp);
+    printf("Read from file: %s", str);
+    fclose(fp);
+
+    return 0;
+}
+                </code></pre>
+                <p><strong>GitHub Repository:</strong> <a href="https://github.com/SKilgori/alx-low_level_programming">Link to the repository</a></p>
+            </article>
+
+            <article>
+                <h3>Web Stack Debugging</h3>
+                <p><strong>Description:</strong> Several projects focused on debugging existing web stacks. It demonstrates a troubleshooting approach, the ability to identify and solve problems related to web server configurations, database connectivity, and application errors. These are key to maintaining system stability.</p>
+                <pre><code>
+#Example approach to debugging a webserver error
+#1. Check the web server logs (e.g., /var/log/apache2/error.log or /var/log/nginx/error.log) for error messages.
+#2. Test the application locally to replicate the issue.
+#3. Review code or configuration file changes that may have introduced the bug.
+                </code></pre>
+                <p><strong>GitHub Repository:</strong> <a href="https://github.com/SKilgori/alx-system_engineering-devops">Link to the repository</a></p>
+            </article>
+
+        </section>
+
+        <section id="skills">
+            <h2>Skills</h2>
+            <ul>
+                <li><strong>Operating Systems:</strong> Linux (Ubuntu, CentOS), Windows Server</li>
+                <li><strong>Networking:</strong> TCP/IP, DNS, DHCP, VPN, Routing, Firewalls, SSH</li>
+                <li><strong>Scripting:</strong> Bash, Python</li>
+                <li><strong>Programming:</strong> C, HTML/CSS, JavaScript</li>
+                <li><strong>Cloud Computing:</strong> (If applicable, mention AWS, Azure, etc.)</li>
+                <li><strong>Virtualization:</strong> (VMware, VirtualBox - if applicable)</li>
+                <li><strong>Security:</strong> Firewall Configuration, SSH Hardening, Basic Security Principles</li>
+                <li><strong>Database Management:</strong> (MySQL, PostgreSQL - if applicable)</li>
+                <li><strong>Troubleshooting:</strong> Hardware, Software, Network Issues</li>
+            </ul>
+        </section>
+
+        <section id="contact">
+            <h2>Contact</h2>
+            <p>Email: <a href="mailto:shahidakilgori@gmail.com">shahidakilgori@gmail.com</a></p>
+            <p>LinkedIn: <a href="https://www.linkedin.com/in/sadiya-muhammad">Sadiya Muhammad Kilgori</a></p>
+        </section>
+    </main>
+    <footer>
+        <p>&copy; 2025 Sadiya Muhammad Kilgori. All rights reserved.</p>
+    </footer>
+</body>
+</html>
